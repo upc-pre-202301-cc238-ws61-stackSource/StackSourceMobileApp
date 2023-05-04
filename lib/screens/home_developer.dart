@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:techlinker/widgets/developer_item.dart';
-
+import '../models/developer_unique_item.dart';
+import '../widgets/developer_item.dart';
 import '../constants/colors.dart';
 
 class DeveloperHome extends StatelessWidget {
-  const DeveloperHome({super.key});
+  DeveloperHome({super.key});
+
+  final developersItem = DeveloperUniqueItem.developerItems();
 
   @override
   Widget build(BuildContext context) {
@@ -30,36 +32,36 @@ class DeveloperHome extends StatelessWidget {
             const SizedBox(
               height: 17,
             ),
-            Row(children: const [
-              Text("Polular Developers",
-                  style: TextStyle(
-                      color: textColor,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700)),
-              SizedBox(
-                width: 122,
+            ElevatedButton(
+              onPressed: () {},
+              child: Row(children: [
+                Icon(Icons.filter_list, color: textColor),
+                Text('Filter Developers',
+                    style: TextStyle(color: textColor, fontSize: 17))
+              ]),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: secondaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
-              Text("See All",
-                  style: TextStyle(
-                      color: textColor,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700))
-            ]),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text("All Developers",
+                style: TextStyle(
+                    color: textColor,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700)),
             const SizedBox(
               height: 10,
             ),
             Expanded(
                 child: ListView(
               children: [
-                DeveloperItem(),
-                DeveloperItem(),
-                DeveloperItem(),
-                DeveloperItem(),
-                DeveloperItem(),
-                DeveloperItem(),
-                DeveloperItem(),
-                DeveloperItem(),
-                DeveloperItem()
+                for (DeveloperUniqueItem item in developersItem)
+                  DeveloperItem(item: item)
               ],
             ))
           ]),

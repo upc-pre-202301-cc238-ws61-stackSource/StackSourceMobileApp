@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:techlinker/constants/colors.dart';
+import '../models/developer_unique_item.dart';
+import '../constants/colors.dart';
 
 class DeveloperItem extends StatelessWidget {
-  const DeveloperItem({super.key});
+  final DeveloperUniqueItem item;
+
+  const DeveloperItem({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 5, top: 5),
-      padding: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.only(bottom: 10, top: 10),
+      padding: EdgeInsets.symmetric(vertical: 15),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: primaryColor),
           color: secondaryColor),
       child: ListTile(
+        onTap: () => {print("Clicked")},
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: Image.network(
-            'https://cdn0.iconfinder.com/data/icons/device-and-development-2/512/77_hacker_user_gammer_programmer-512.png',
+            item.image!,
             height: 64,
             width: 64,
             fit: BoxFit.cover,
@@ -27,12 +31,12 @@ class DeveloperItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'John Doe',
+              item.name!,
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 18, color: textColor),
             ),
             Text(
-              'Software Developer',
+              item.job!,
               style: TextStyle(
                 color: textColor,
                 fontSize: 16,
@@ -54,7 +58,7 @@ class DeveloperItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '67',
+              item.points!.toString(),
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 18, color: textColor),
             ),
