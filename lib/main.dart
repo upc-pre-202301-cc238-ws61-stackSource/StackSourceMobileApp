@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:techlinker/screens/main_developer_page.dart';
+import '../screens/main_developer_page.dart';
 
 void main() {
   runApp(const MyApp());

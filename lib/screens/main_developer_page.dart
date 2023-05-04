@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:techlinker/constants/colors.dart';
-import 'package:techlinker/screens/home_developer.dart';
+import '../constants/colors.dart';
+import '../screens/home_developer.dart';
 
 class MainDeveloperPage extends StatefulWidget {
   const MainDeveloperPage({super.key});
@@ -16,7 +15,7 @@ class _MainDeveloperPageState extends State<MainDeveloperPage> {
   final screens = [
     DeveloperHome(),
     Center(child: Text("Mail2", style: TextStyle(color: Colors.green))),
-    Center(child: Text("Mail3", style: TextStyle(color: Colors.pink))),
+    Center(child: Text("Mail3", style: TextStyle(color: Color.fromRGBO(233, 30, 99, 1)))),
     Center(child: Text("Mail4", style: TextStyle(color: Colors.blue))),
   ];
 
