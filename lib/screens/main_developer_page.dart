@@ -15,7 +15,9 @@ class _MainDeveloperPageState extends State<MainDeveloperPage> {
   final screens = [
     DeveloperHome(),
     Center(child: Text("Mail2", style: TextStyle(color: Colors.green))),
-    Center(child: Text("Mail3", style: TextStyle(color: Color.fromRGBO(233, 30, 99, 1)))),
+    Center(
+        child: Text("Mail3",
+            style: TextStyle(color: Color.fromRGBO(233, 30, 99, 1)))),
     Center(child: Text("Mail4", style: TextStyle(color: Colors.blue))),
   ];
 
