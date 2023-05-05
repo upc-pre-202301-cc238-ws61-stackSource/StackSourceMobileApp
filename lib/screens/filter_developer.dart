@@ -56,27 +56,6 @@ class _DeveloperFilterState extends State<DeveloperFilter> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 50),
-                Row(children: [
-                  const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Icon(Icons.filter_list, color: textColor)),
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('Filter Developers',
-                        style: TextStyle(
-                            color: textColor,
-                            fontSize: 19,
-                            fontWeight: FontWeight.w500)),
-                  ),
-                  Spacer(),
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child:
-                          const Icon(Icons.close, color: textColor, size: 30))
-                ]),
                 SizedBox(height: 35),
                 const Text(
                   'Speciality Type',
@@ -126,6 +105,7 @@ class _DeveloperFilterState extends State<DeveloperFilter> {
                       fontWeight: FontWeight.w400,
                       color: textColor),
                 ),
+                SizedBox(height: verticalWith),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -270,8 +250,14 @@ class _DeveloperFilterState extends State<DeveloperFilter> {
                 ElevatedButton(
                   onPressed: () {
                     print(selectedSpecialityType);
-                    Navigator.of(context).pop(
-                        {'selectedSpecialityType': selectedSpecialityType});
+                    Navigator.of(context).pop({
+                      'selectedSpecialityType': selectedSpecialityType,
+                      'selectedFramework': selectedFramework,
+                      'selectedProgrammingLanguage':
+                          selectedProgrammingLanguage,
+                      'selectedDatabase': selectedDatabase,
+                      'selectedYearsOfExperience': selectedYearsOfExperience
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: secondaryColor,
@@ -297,6 +283,40 @@ class _DeveloperFilterState extends State<DeveloperFilter> {
 
   @override
   Widget build(BuildContext context) {
-    return buildFilterScreen();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        leading: SizedBox(height: 5),
+        title: Row(
+          children: [
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Icon(Icons.filter_list, color: textColor),
+            ),
+            const SizedBox(width: 8),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Filter Developers',
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 19,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            Spacer(),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: const Icon(Icons.close, color: textColor, size: 30),
+            ),
+          ],
+        ),
+      ),
+      backgroundColor: primaryColor,
+      body: buildFilterScreen(),
+    );
   }
 }

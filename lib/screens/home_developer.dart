@@ -14,13 +14,15 @@ class DeveloperHome extends StatefulWidget {
 class _DeveloperHomeState extends State<DeveloperHome> {
   final developersItem = DeveloperUniqueItem.developerItems();
   List<dynamic> selectedSpecialityType = [];
+  List<dynamic> selectedYearsOfExperience = [];
+  List<dynamic> selectedFramework = [];
+  List<dynamic> selectedProgrammingLanguage = [];
+  List<dynamic> selectedDatabase = [];
 
   @override
   Widget build(BuildContext context) {
-    final filterDevelopers = developersItem.where((specialzation) {
-      return selectedSpecialityType.isEmpty ||
-          selectedSpecialityType.contains(specialzation.specialityType);
-    }).toList();
+    final filterDevelopersList = filterDevelopers();
+
     return Scaffold(
         backgroundColor: primaryColor,
         body: Container(
@@ -55,7 +57,18 @@ class _DeveloperHomeState extends State<DeveloperHome> {
                               setState(() {
                                 selectedSpecialityType =
                                     value['selectedSpecialityType'];
+                                selectedFramework = value['selectedFramework'];
+                                selectedDatabase = value['selectedDatabase'];
+                                selectedProgrammingLanguage =
+                                    value['selectedProgrammingLanguage'];
+                                selectedYearsOfExperience =
+                                    value['selectedYearsOfExperience'];
+
                                 print(selectedSpecialityType);
+                                print(selectedFramework);
+                                print(selectedDatabase);
+                                print(selectedProgrammingLanguage);
+                                print(selectedYearsOfExperience);
                               })
                             }
                         });
@@ -85,14 +98,28 @@ class _DeveloperHomeState extends State<DeveloperHome> {
             ),
             Expanded(
                 child: ListView.builder(
-                    itemCount: filterDevelopers.length,
+                    itemCount: filterDevelopersList.length,
                     itemBuilder: (context, index) {
-                      final developer = filterDevelopers[index];
+                      final developer = filterDevelopersList[index];
                       return DeveloperItem(
                         item: developer,
                       );
                     }))
           ]),
         ));
+  }
+
+  List<dynamic> filterDevelopers() {
+    List<dynamic> filteredDevelopers1 = developersItem.where((specialzation) {
+      return selectedSpecialityType.isEmpty ||
+          selectedSpecialityType.contains(specialzation.specialityType);
+    }).toList();
+
+    List<dynamic> filteredDevelopers2 = filteredDevelopers1.where((framework) {
+      return selectedFramework.isEmpty ||
+          selectedFramework.contains(framework.framework);
+    }).toList();
+
+    return filteredDevelopers2;
   }
 }
