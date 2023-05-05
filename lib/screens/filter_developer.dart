@@ -22,7 +22,7 @@ class _DeveloperFilterState extends State<DeveloperFilter> {
   double verticalWith = 10;
 
   final specialityTypeOptions = ['Frontend', 'Backend', 'Mobile', 'FullStack'];
-  final yearsOfExperienceOptions = ['1 - 2', '2 - 5', '5+'];
+  final yearsOfExperienceOptions = ['Intern', '1 - 2', '3 - 5', '5+'];
   final frameworkOptions = [
     'Angular',
     'ASP.NET Core',
@@ -35,7 +35,8 @@ class _DeveloperFilterState extends State<DeveloperFilter> {
     'Python',
     'Java',
     'C#',
-    'C++'
+    'C++',
+    'TypeScript'
   ];
   final databaseOptions = [
     'MySQL',
@@ -76,6 +77,7 @@ class _DeveloperFilterState extends State<DeveloperFilter> {
                                 onSelected: (selected) {
                                   setState(() {
                                     if (selected) {
+                                      selectedSpecialityType.clear();
                                       selectedSpecialityType
                                           .add(specialityType);
                                     } else {
@@ -117,6 +119,12 @@ class _DeveloperFilterState extends State<DeveloperFilter> {
                                 onSelected: (selected) {
                                   setState(() {
                                     if (selected) {
+                                      if (yearOfExperience == 'Intern') {
+                                        selectedYearsOfExperience.clear();
+                                      } else {
+                                        selectedYearsOfExperience
+                                            .remove('Intern');
+                                      }
                                       selectedYearsOfExperience
                                           .add(yearOfExperience);
                                     } else {

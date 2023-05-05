@@ -115,11 +115,24 @@ class _DeveloperHomeState extends State<DeveloperHome> {
           selectedSpecialityType.contains(specialzation.specialityType);
     }).toList();
 
-    List<dynamic> filteredDevelopers2 = filteredDevelopers1.where((framework) {
+    List<dynamic> filteredDevelopers2 = filteredDevelopers1.where((developer) {
       return selectedFramework.isEmpty ||
-          selectedFramework.contains(framework.framework);
+          selectedFramework
+              .every((framework) => developer.frameworks.contains(framework));
     }).toList();
 
-    return filteredDevelopers2;
+    List<dynamic> filteredDevelopers3 = filteredDevelopers2.where((developer) {
+      return selectedProgrammingLanguage.isEmpty ||
+          selectedProgrammingLanguage.every(
+              (language) => developer.programmingLanguage.contains(language));
+    }).toList();
+
+    List<dynamic> filteredDevelopers4 = filteredDevelopers3.where((developer) {
+      return selectedDatabase.isEmpty ||
+          selectedDatabase
+              .every((database) => developer.database.contains(database));
+    }).toList();
+
+    return filteredDevelopers4;
   }
 }
