@@ -30,12 +30,12 @@ class DeveloperItem extends StatelessWidget {
           children: [
             Text(
               item.name!,
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 18, color: textColor),
             ),
             Text(
-              item.job!,
-              style: TextStyle(
+              "${item.specialityType!} Developer",
+              style: const TextStyle(
                 color: textColor,
                 fontSize: 16,
               ),
@@ -43,7 +43,7 @@ class DeveloperItem extends StatelessWidget {
             Row(
               children: [
                 for (int i = 0; i < 5; i++)
-                  Icon(
+                  const Icon(
                     Icons.star,
                     size: 18,
                     color: Colors.amber,
@@ -56,12 +56,12 @@ class DeveloperItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              item.points!.toString(),
+              item.yearsOfExperience!.toString(),
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 18, color: textColor),
             ),
             Text(
-              'points',
+              'Years',
               style: TextStyle(
                 color: textColor,
                 fontSize: 16,

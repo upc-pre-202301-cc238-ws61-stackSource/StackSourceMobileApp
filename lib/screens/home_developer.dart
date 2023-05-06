@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:techlinker/screens/filter_developer.dart';
 import '../models/developer_unique_item.dart';
 import '../widgets/developer_item.dart';
 import '../constants/colors.dart';
 
-class DeveloperHome extends StatelessWidget {
+class DeveloperHome extends StatefulWidget {
   DeveloperHome({super.key});
 
+  @override
+  State<DeveloperHome> createState() => _DeveloperHomeState();
+}
+
+class _DeveloperHomeState extends State<DeveloperHome> {
   final developersItem = DeveloperUniqueItem.developerItems();
+  List<dynamic> selectedSpecialityType = [];
+  List<dynamic> selectedYearsOfExperience = [];
+  List<dynamic> selectedFramework = [];
+  List<dynamic> selectedProgrammingLanguage = [];
+  List<dynamic> selectedDatabase = [];
 
   @override
   Widget build(BuildContext context) {
+    final filterDevelopersList = filterDevelopers();
+
     return Scaffold(
         backgroundColor: primaryColor,
         body: Container(
@@ -33,7 +46,33 @@ class DeveloperHome extends StatelessWidget {
               height: 17,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DeveloperFilter()))
+                    .then((value) => {
+                          if (value != null)
+                            {
+                              setState(() {
+                                selectedSpecialityType =
+                                    value['selectedSpecialityType'];
+                                selectedFramework = value['selectedFramework'];
+                                selectedDatabase = value['selectedDatabase'];
+                                selectedProgrammingLanguage =
+                                    value['selectedProgrammingLanguage'];
+                                selectedYearsOfExperience =
+                                    value['selectedYearsOfExperience'];
+
+                                print(selectedSpecialityType);
+                                print(selectedFramework);
+                                print(selectedDatabase);
+                                print(selectedProgrammingLanguage);
+                                print(selectedYearsOfExperience);
+                              })
+                            }
+                        });
+              },
               child: Row(children: [
                 Icon(Icons.filter_list, color: textColor),
                 Text('Filter Developers',
@@ -58,13 +97,42 @@ class DeveloperHome extends StatelessWidget {
               height: 10,
             ),
             Expanded(
-                child: ListView(
-              children: [
-                for (DeveloperUniqueItem item in developersItem)
-                  DeveloperItem(item: item)
-              ],
-            ))
+                child: ListView.builder(
+                    itemCount: filterDevelopersList.length,
+                    itemBuilder: (context, index) {
+                      final developer = filterDevelopersList[index];
+                      return DeveloperItem(
+                        item: developer,
+                      );
+                    }))
           ]),
         ));
+  }
+
+  List<dynamic> filterDevelopers() {
+    List<dynamic> filteredDevelopers1 = developersItem.where((specialzation) {
+      return selectedSpecialityType.isEmpty ||
+          selectedSpecialityType.contains(specialzation.specialityType);
+    }).toList();
+
+    List<dynamic> filteredDevelopers2 = filteredDevelopers1.where((developer) {
+      return selectedFramework.isEmpty ||
+          selectedFramework
+              .every((framework) => developer.frameworks.contains(framework));
+    }).toList();
+
+    List<dynamic> filteredDevelopers3 = filteredDevelopers2.where((developer) {
+      return selectedProgrammingLanguage.isEmpty ||
+          selectedProgrammingLanguage.every(
+              (language) => developer.programmingLanguage.contains(language));
+    }).toList();
+
+    List<dynamic> filteredDevelopers4 = filteredDevelopers3.where((developer) {
+      return selectedDatabase.isEmpty ||
+          selectedDatabase
+              .every((database) => developer.database.contains(database));
+    }).toList();
+
+    return filteredDevelopers4;
   }
 }
