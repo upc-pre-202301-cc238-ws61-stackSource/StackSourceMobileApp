@@ -16,7 +16,7 @@ class _DeveloperMessageState extends State<DeveloperMessage> {
     return Scaffold(
         backgroundColor: primaryColor,
         body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 24),
+          margin: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

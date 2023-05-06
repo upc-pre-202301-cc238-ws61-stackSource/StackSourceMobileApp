@@ -34,7 +34,7 @@ class MessageItem extends StatelessWidget {
             ),
             SizedBox(height: 5),
             Text(
-              "${item.name!} Developer",
+              "Last Message",
               style: const TextStyle(
                 color: textColor,
                 fontSize: 16,
