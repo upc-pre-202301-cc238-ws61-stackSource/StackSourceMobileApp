@@ -16,7 +16,7 @@ class DeveloperHome extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(
+            const SizedBox(
               height: 34,
             ),
             const Text(
@@ -49,7 +49,7 @@ class DeveloperHome extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Text("All Developers",
+            const Text("All Developers",
                 style: TextStyle(
                     color: textColor,
                     fontSize: 15,
