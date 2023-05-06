@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techlinker/screens/messages_developer.dart';
 import '../constants/colors.dart';
 import '../screens/home_developer.dart';
 
@@ -14,8 +15,10 @@ class _MainDeveloperPageState extends State<MainDeveloperPage> {
 
   final screens = [
     DeveloperHome(),
-    Center(child: Text("Mail2", style: TextStyle(color: Colors.green))),
-    Center(child: Text("Mail3", style: TextStyle(color: Color.fromRGBO(233, 30, 99, 1)))),
+    DeveloperMessage(),
+    Center(
+        child: Text("Mail3",
+            style: TextStyle(color: Color.fromRGBO(233, 30, 99, 1)))),
     Center(child: Text("Mail4", style: TextStyle(color: Colors.blue))),
   ];
 

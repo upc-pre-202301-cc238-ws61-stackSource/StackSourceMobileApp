@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import '../models/developer_unique_item.dart';
+
 import '../constants/colors.dart';
+import '../models/developer_unique_item.dart';
 
-class DeveloperItem extends StatelessWidget {
+class MessageItem extends StatelessWidget {
   final DeveloperUniqueItem item;
-
-  const DeveloperItem({super.key, required this.item});
+  const MessageItem({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10, top: 10),
-      padding: EdgeInsets.symmetric(vertical: 15),
+      padding: EdgeInsets.symmetric(vertical: 13),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12), color: secondaryColor),
+          borderRadius: BorderRadius.circular(12), color: primaryColor),
       child: ListTile(
         onTap: () => {print("Clicked")},
         leading: ClipRRect(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(30),
           child: Image.network(
             item.image!,
             height: 64,
-            width: 64,
+            width: 56,
             fit: BoxFit.cover,
           ),
         ),
@@ -30,25 +29,16 @@ class DeveloperItem extends StatelessWidget {
           children: [
             Text(
               item.name!,
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 18, color: textColor),
             ),
+            SizedBox(height: 5),
             Text(
-              item.job!,
-              style: TextStyle(
+              "${item.name!} Developer",
+              style: const TextStyle(
                 color: textColor,
                 fontSize: 16,
               ),
-            ),
-            Row(
-              children: [
-                for (int i = 0; i < 5; i++)
-                  Icon(
-                    Icons.star,
-                    size: 18,
-                    color: Colors.amber,
-                  ),
-              ],
             ),
           ],
         ),
@@ -56,16 +46,19 @@ class DeveloperItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              item.points!.toString(),
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 18, color: textColor),
-            ),
-            Text(
-              'points',
+              'Date',
               style: TextStyle(
                 color: textColor,
                 fontSize: 16,
               ),
+            ),
+            const SizedBox(
+              height: 7,
+            ),
+            CircleAvatar(
+              backgroundColor: warningColor,
+              radius: 12,
+              child: Text('2', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
