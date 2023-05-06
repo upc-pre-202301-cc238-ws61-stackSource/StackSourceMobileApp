@@ -29,7 +29,7 @@ class _DeveloperHomeState extends State<DeveloperHome> {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(
+            const SizedBox(
               height: 34,
             ),
             const Text(
@@ -88,7 +88,7 @@ class _DeveloperHomeState extends State<DeveloperHome> {
             const SizedBox(
               height: 10,
             ),
-            Text("All Developers",
+            const Text("All Developers",
                 style: TextStyle(
                     color: textColor,
                     fontSize: 15,
